@@ -23,12 +23,12 @@ while True:
     check, frame = video.read()
     
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    gray_fram_gaussian = cv2.GaussianBlur(gray_frame, (21, 21), 0)
+    gray_frame_gaussian = cv2.GaussianBlur(gray_frame, (21, 21), 0)
 
     if first_frame is None:
-        first_frame = gray_fram_gaussian
+        first_frame = gray_frame_gaussian
     
-    delta_frame = cv2.absdiff(first_frame, gray_fram_gaussian)
+    delta_frame = cv2.absdiff(first_frame, gray_frame_gaussian)
 
     thresh_frame = cv2.threshold(delta_frame, 45, 255, cv2.THRESH_BINARY)[1]
     dilate_frame = cv2.dilate(thresh_frame, None, iterations=2)
